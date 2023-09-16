@@ -5,6 +5,8 @@ import EventsScreen from "../Screens/EventsScreen/EventsScreen";
 import ExploreScreen from "../Screens/ExploreScreen/ExploreScreen";
 import ProfileScreen from "../Screens/ProfileScreen/ProfileScreen";
 import TracksScreen from "../Screens/TracksScreen/TracksScreen";
+import Ionicons from '@expo/vector-icons/Ionicons';
+import { StyleSheet } from "react-native";
 
 export type StackTabsParamList = {
   ExploreTab: undefined;
@@ -36,52 +38,64 @@ const MainTabs = () => {
         screenOptions={{
           headerShown: false,
           tabBarHideOnKeyboard: true,
+          tabBarActiveTintColor: '#CE4651',
+          tabBarInactiveTintColor: '#336699',
+          tabBarStyle: [
+            {
+              backgroundColor: "#9EE493",
+              display: "flex"
+            },
+            null
+          ],
         }}
+        //@ts-ignore
       >
         <Tabs.Screen
           name="ExploreTab"
-          component={EventsScreen}
+          component={ExploreScreen}
           options={{
-            tabBarLabel: "Main",
-            // tabBarIcon: ({ color, size }) => (
-            //   <Ionicons name="home" color={color} size={size} />
-            // ),
+            tabBarLabel: "Explore",
+            tabBarIcon: ({ color, size }) => (
+              <Ionicons name="flame-outline" color={color} size={size} />
+            ),
           }}
         />
         <Tabs.Screen
           name="TracksTab"
-          component={ExploreScreen}
+          component={TracksScreen}
           options={{
-            tabBarLabel: "Search post",
-            // tabBarIcon: ({ color, size }) => (
-            //   <Ionicons name="md-search" size={size} color={color} />
-            // ),
+            tabBarLabel: "Tracks",
+            tabBarIcon: ({ color, size }) => (
+              <Ionicons name="bicycle-outline" size={size} color={color} />
+            ),
           }}
         />
         <Tabs.Screen
           name="EventsTab"
-          component={ProfileScreen}
+          component={EventsScreen}
           options={{
-            tabBarLabel: "Create post",
-            // tabBarIcon: ({ color, size }) => (
-            //   <MaterialIcons name="post-add" size={size} color={color} />
-            // ),
+            tabBarLabel: "Events",
+            tabBarIcon: ({ color, size }) => (
+              <Ionicons name="star-outline" size={size} color={color} />
+            ),
           }}
         />
         <Tabs.Screen
           name="ProfileTab"
-          component={TracksScreen}
+          component={ProfileScreen}
           // initialParams={{ userId: "" }}
           options={{
-            tabBarLabel: "My timeline",
-            // tabBarIcon: ({ color, size }) => (
-            //   <FontAwesome name="user-circle-o" size={size} color={color} />
-            // ),
+            tabBarLabel: "Profile",
+            tabBarIcon: ({ color, size }) => (
+              <Ionicons name="person-outline" size={size} color={color} />
+            ),
           }}
         />
       </Tabs.Navigator>
     // {/* </userIdStateContext.Provider> */}
   );
+
+  
 };
 
 export default MainTabs;
