@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { SafeAreaView, StyleSheet, Text, Platform, StatusBar, View } from "react-native";
 import { getUserData } from "../../Client/usersTest";
 import { useQuery } from "@tanstack/react-query";
 const ProfileScreen = () => {
@@ -21,19 +21,20 @@ const ProfileScreen = () => {
   }
   
   return (
-    <View style={styles.container}>
+    <View style={styles.androidSafeArea}>
       <Text>this is an pr asdsadsa 5 Screen!</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  androidSafeArea: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "white",
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
     alignItems: "center",
     justifyContent: "center",
-  },
+  }
 });
 
 export default ProfileScreen;

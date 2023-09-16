@@ -1,20 +1,22 @@
-import { View, StyleSheet, Text } from "react-native";
+import { SafeAreaView, StyleSheet, Text, Platform, StatusBar } from "react-native";
+
 
 const TracksScreen = () => {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.androidSafeArea}>
       <Text>this is an t Screen!</Text>
-    </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  androidSafeArea: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "white",
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
     alignItems: "center",
     justifyContent: "center",
-  },
+  }
 });
 
 export default TracksScreen;
