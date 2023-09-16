@@ -1,0 +1,20 @@
+import { View, StyleSheet, Text } from "react-native";
+
+const EventsScreen = () => {
+  return (
+    <View style={styles.container}>
+      <Text>this is an Events Screen!</Text>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
+
+export default EventsScreen;
