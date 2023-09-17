@@ -5,6 +5,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import type { NavigatorScreenParams } from "@react-navigation/native";
 import MainTabs from "../MainTabs/MainTabs";
 import { AddEventForm } from "../Components/AddEventForm";
+import { RegisterTrackForm } from "../Components/RegisterTrackForm";
+import { ProfileForm } from "../Components/ProfileForm";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -86,6 +88,11 @@ export const Navigation = () => {
                 <Stack.Screen
                   name="AddEventForm"
                   component={AddEventForm}
+                  options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                  name="RegisterTrackForm"
+                  component={RegisterTrackForm}
                   options={{ headerShown: false }}
                 />
               {/* )} */}

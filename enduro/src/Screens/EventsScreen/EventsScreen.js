@@ -3,6 +3,7 @@ import { SafeAreaView, StyleSheet, Text, Platform, StatusBar, ScrollView, View, 
 import { supaBaseclient } from "../../../utilities/supabaseclient";
 import { Event } from "../../Components/Event";
 import { useNavigation } from '@react-navigation/native';
+import { NativeBaseProvider, Spinner } from "native-base";
 
 const EventsScreen = () => {
   const [data, setData] = useState(null);
@@ -28,7 +29,7 @@ const EventsScreen = () => {
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollArea}>
         {data ? data.map((element, index) => {
           return <Event data={element} key={index}/>
-        }):<Text>Siema</Text>}
+        }):<NativeBaseProvider style={{display: "flex", alignItems: "center", justifyContent: "center"}}><Spinner accessibilityLabel="Loading posts" /></NativeBaseProvider>}
         </ScrollView>
     </SafeAreaView>
   );
@@ -52,9 +53,6 @@ const styles = StyleSheet.create({
     height: "7%",
     width: "100%",
     backgroundColor: "#9EE493",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
     marginBottom: 5
   }
 });

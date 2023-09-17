@@ -3,16 +3,17 @@ import React from "react";
 import { StyleSheet, SafeAreaView, StatusBar, Button } from "react-native";
 
 
-export const AddEventForm = () => {
+export const RegisterTrackForm = () => {
   return (
     <SafeAreaView style={styles.androidSafeArea}>
         <NativeBaseProvider>
         <View style={styles.form}>
         <View style={styles.form2}>
-            <Badge style={{marginBottom: 20}} colorScheme={"success"}>ADD EVENT</Badge>
-            <Input mx="3" placeholder="Title" w="100%" />
-            <Input mx="3" placeholder="Organizer" w="100%" />
-            <Input mx="3" placeholder="Date" w="100%"/>
+            <Badge style={{marginBottom: 20}} colorScheme={"success"}>REGISTER TRACK</Badge>
+            <Input mx="3" placeholder="Name" w="100%" />
+            <Input mx="3" placeholder="Difficulty" w="100%" />
+            <Input mx="3" placeholder="Stroke" w="100%"/>
+            <Input mx="3" placeholder="Color" w="100%"/>
         </View>
         <View style={styles.form2}>
             <Button title="Submit"/>
@@ -40,5 +41,8 @@ const styles = StyleSheet.create({
     },
     form2:{
         width: "100%",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center"
     }
   });

@@ -1,15 +1,38 @@
-import { SafeAreaView, StyleSheet, Text, Platform, StatusBar, View } from "react-native";
-import TopBarNavigation from "../../Components/TopBarNavigation/TopBarNavigation";
-import data from '../../../spatial_data/data.json'
-import Track from "./Track";
+// import Track from "./Track";
+import { SafeAreaView, StyleSheet, Text, Platform, StatusBar, View, Button, ScrollView } from "react-native";
+import { useEffect, useState } from "react";
+import { supaBaseclient } from "../../../utilities/supabaseclient";
+import { Track } from "../../Components/Track";
+import { useNavigation } from "@react-navigation/native";
+import { NativeBaseProvider, Spinner } from "native-base";
+
 
 const TracksScreen = () => {
+  const [data, setData] = useState(null);
+  const navigation = useNavigation();
+
+  useEffect(()=>{
+    const call = async ()=>{
+      const response = await supaBaseclient.from('routes').select(`*`)
+      if (response.data) {
+        console.log(response.data)
+        setData(response.data)
+      }
+    }
+    call();
+  }, [])
+
   return (
     <SafeAreaView style={styles.androidSafeArea}>
-      <TopBarNavigation />
-      {data ? data.map((element) => {
-          return <Track geoJson={element}/>
-        }):<Text>Siema</Text>}
+      <Button style={styles.topBar} title="Register new Track" 
+      onPress={() =>
+        navigation.navigate('RegisterTrackForm')
+      }/>
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollArea}>
+        {data ? data.map((element, index) => {
+          return <Track data={element} key={index}/>
+        }):<NativeBaseProvider style={{display: "flex", alignItems: "center", justifyContent: "center"}}><Spinner accessibilityLabel="Loading posts" /></NativeBaseProvider>}
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -21,13 +44,27 @@ const styles = StyleSheet.create({
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
     alignItems: "center",
     justifyContent: "center",
-  },
-  content: {
-    flex: 1,
+    flexDirection: "column"
   },
   textContent: {
     flex: 1,
     color: "red",
+  },
+  topBar:{
+    height: "7%",
+    width: "100%",
+    backgroundColor: "#9EE493",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 5
+  },
+  scrollArea:{
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "100%"
   }
 });
 
