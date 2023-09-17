@@ -1,14 +1,15 @@
 import { SafeAreaView, StyleSheet, Text, Platform, StatusBar, View } from "react-native";
 import TopBarNavigation from "../../Components/TopBarNavigation/TopBarNavigation";
-
+import data from '../../../spatial_data/data.json'
+import Track from "./Track";
 
 const TracksScreen = () => {
   return (
     <SafeAreaView style={styles.androidSafeArea}>
       <TopBarNavigation />
-      <View style={styles.content}>
-        <Text style={styles.textContent}>this is an t Screen! sadsad sadd sa sadsadsa</Text>
-      </View>
+      {data ? data.map((element) => {
+          return <Track geoJson={element}/>
+        }):<Text>Siema</Text>}
     </SafeAreaView>
   );
 };
