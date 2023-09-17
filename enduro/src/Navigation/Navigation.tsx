@@ -4,6 +4,7 @@ import { AppState, View, SafeAreaView } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import type { NavigatorScreenParams } from "@react-navigation/native";
 import MainTabs from "../MainTabs/MainTabs";
+import { AddEventForm } from "../Components/AddEventForm";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -80,6 +81,11 @@ export const Navigation = () => {
                 <Stack.Screen
                   name="MainTabs"
                   component={MainTabs}
+                  options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                  name="AddEventForm"
+                  component={AddEventForm}
                   options={{ headerShown: false }}
                 />
               {/* )} */}
